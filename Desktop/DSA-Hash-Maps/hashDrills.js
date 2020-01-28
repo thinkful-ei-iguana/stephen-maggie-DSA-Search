@@ -22,10 +22,10 @@ function main() {
   // console.log(lotr.get('Maiar'));
   // console.log(lotr.get('Hobbit'));
   // console.log('Capacity is ', lotr._capacity);
-  console.log('hashtable', lotr._hashTable);
-  console.log(lotr);
+  // console.log('hashtable', lotr._hashTable);
+  // console.log(lotr);
 }
-console.log(main());
+// console.log(main());
 
 // 1. Print your hash map and notice the length and items that are hashed in your hash map. Have you hashed all the items you were asked to?
 // -No, not all items seem to have hashed
@@ -55,7 +55,7 @@ const WhatDoesThisDo = function () {
 
 // 3. Demonstrate understanding of hash maps
 
-// open addressing: [88, 59, 17, 31, 10]
+// open addressing: [22, 88, empty, empty, 4, 15, 28, 17, 59, 31, 10]
 
 // separate chaining: 
 // [ ↓ , 20, 12 , 5 , ↓ , 17]
@@ -67,5 +67,21 @@ const WhatDoesThisDo = function () {
 //
 
 // 5. Any permutation of a palindrome
+// correct solution below:
+function isItAPalindrome(string) {
 
+  const unpaired = new HashMap();
+  for (let character of string) {
+    if (unpaired.has(character)) {
+      unpaired.delete(character);
+    } else {
+      unpaired.set(character, true);
+    }
+  }
+  return unpaired.size <= 1;
+
+}
+isItAPalindrome('done');
 // 7. Separate Chaining
+
+
