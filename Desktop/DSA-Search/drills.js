@@ -1,4 +1,5 @@
 const BinarySearchTree = require('./BinarySearchTree');
+const Queue = require('./queue');
 
 function binarySearch(array, value, start, end) {
   let beginning = start === undefined ? 0 : start;
@@ -114,24 +115,56 @@ function findBook(library, dewey, title, start, end) {
 
 // 5.
 
-function main() {
-  const BST = new BinarySearchTree();
-  BST.insert(25, 25);
-  BST.insert(15, 15);
-  BST.insert(50, 50);
-  BST.insert(10, 10);
-  BST.insert(24, 24);
-  BST.insert(35, 35);
-  BST.insert(70, 70);
-  BST.insert(4, 4);
-  BST.insert(12, 12);
-  BST.insert(18, 18);
-  BST.insert(31, 31);
-  BST.insert(44, 44);
-  BST.insert(66, 66);
-  BST.insert(90, 90);
-  BST.insert(22, 20);
-  console.log(BST.postOrder());
+// function main() {
+//   const BST = new BinarySearchTree();
+//   BST.insert(25, 25);
+//   BST.insert(15, 15);
+//   BST.insert(50, 50);
+//   BST.insert(10, 10);
+//   BST.insert(24, 24);
+//   BST.insert(35, 35);
+//   BST.insert(70, 70);
+//   BST.insert(4, 4);
+//   BST.insert(12, 12);
+//   BST.insert(18, 18);
+//   BST.insert(31, 31);
+//   BST.insert(44, 44);
+//   BST.insert(66, 66);
+//   BST.insert(90, 90);
+//   BST.insert(22, 20);
+//   console.log(BST.postOrder());
+// }
+
+// main();
+
+//6 
+
+const starTrek = new BinarySearchTree();
+const chars = ['Captain Picard', 'Commander Riker', 'Commander Data', 'Lt. Cmdr. Worf', 'Lt. Cmdr. LaForge', 'Lt.Cmdr. Crusher', 'Lieutenant security-officer', 'Lieutenant Selar'];
+for (let char of chars) {
+  starTrek.insert(char, char);
 }
 
-main();
+function printStarTrekBfs(bst, values = []) {
+  const queue = new Queue();
+  const node = bst;
+  
+  queue.enqueue(node);
+
+  while (queue.length) {
+    const node = queue.dequeue();
+
+    values.push(node.value);
+
+    if (node.left) {
+      queue.enqueue(node.left);
+    }
+
+    if (node.right) {
+      queue.enqueue(node.right);
+    }
+  }
+  return values;
+}
+
+console.log(printStarTrekBfs(starTrek));
