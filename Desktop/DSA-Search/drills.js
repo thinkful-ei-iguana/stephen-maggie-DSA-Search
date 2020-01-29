@@ -94,23 +94,23 @@ function findBook(library, dewey, title, start, end) {
 
 // 4.
 
-        //        35
-        //        / \
-        //      25   89
-        //     / \  /  \
-        //   15  27 79  91
-        //  /  \        /
-        // 14  19      90
+//        35
+//        / \
+//      25   89
+//     / \  /  \
+//   15  27 79  91
+//  /  \        /
+// 14  19      90
 
-  // 1) post order traversal: 14, 19, 15, 27, 25, 79, 90, 91, 89, 35
+// 1) post order traversal: 14, 19, 15, 27, 25, 79, 90, 91, 89, 35
 
-        //       8
-        //     /   \
-        //    6     10
-        //   / \    / \
-        //  5   7  9   11
+//       8
+//     /   \
+//    6     10
+//   / \    / \
+//  5   7  9   11
 
-  // 2) pre order traversal: 8, 6, 5, 7, 10, 9, 11
+// 2) pre order traversal: 8, 6, 5, 7, 10, 9, 11
 
 
 // 5.
@@ -139,19 +139,23 @@ function findBook(library, dewey, title, start, end) {
 
 //6 
 
-const starTrek = new BinarySearchTree();
-const chars = ['Captain Picard', 'Commander Riker', 'Commander Data', 'Lt. Cmdr. Worf', 'Lt. Cmdr. LaForge', 'Lt.Cmdr. Crusher', 'Lieutenant security-officer', 'Lieutenant Selar'];
+const starTrek = new BinarySearchTree('Captain Picard', 'Captain Picard');
+
+const chars = [
+  'Commander Riker', 'Commander Data', 'Lt. Cmdr. Worf', 'Lt. Cmdr. LaForge', 'Lt.Cmdr. Crusher', 'Lieutenant security-officer', 'Lieutenant Selar'
+];
 for (let char of chars) {
   starTrek.insert(char, char);
 }
+// console.log(starTrek);
 
-function printStarTrekBfs(bst, values = []) {
+function printStarTrekBfs(tree, values = []) {
   const queue = new Queue();
-  const node = bst;
-  
-  queue.enqueue(node);
 
-  while (queue.length) {
+  queue.enqueue(tree);
+
+  console.log(queue.length);
+  while (queue.last) {
     const node = queue.dequeue();
 
     values.push(node.value);
